@@ -1,341 +1,488 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Premium Students Directory</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-gray-50 min-h-screen">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-50 min-h-screen">
     <div class="container mx-auto px-4 py-8 max-w-6xl">
-        <!-- Header -->
-        <header class="mb-8 text-center">
-            <h1 class="text-3xl font-bold text-indigo-700 mb-2">Premium Students Directory</h1>
-            <p class="text-gray-600">Browse and filter our exclusive student database</p>
-        </header>
+      <!-- Header -->
+      <header class="mb-8 text-center">
+        <h1 class="text-3xl font-bold text-indigo-700 mb-2">
+          Premium Students Directory
+        </h1>
+        <p class="text-gray-600">
+          Browse and filter our exclusive student database
+        </p>
+      </header>
 
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <div class="bg-white rounded-lg shadow p-4 flex items-center">
-                <div class="rounded-full bg-indigo-100 p-3 mr-4">
-                    <i class="fas fa-users text-indigo-600 text-xl"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold" id="total-students">0</h2>
-                    <p class="text-gray-600">Total Students</p>
-                </div>
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white rounded-lg shadow p-4 flex items-center">
+          <div class="rounded-full bg-indigo-100 p-3 mr-4">
+            <i class="fas fa-users text-indigo-600 text-xl"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold" id="total-students">0</h2>
+            <p class="text-gray-600">Total Students</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 flex items-center">
+          <div class="rounded-full bg-green-100 p-3 mr-4">
+            <i class="fas fa-graduation-cap text-green-600 text-xl"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold" id="average-grade">0.0</h2>
+            <p class="text-gray-600">Average Grade</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 flex items-center">
+          <div class="rounded-full bg-blue-100 p-3 mr-4">
+            <i class="fas fa-book text-blue-600 text-xl"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold">12</h2>
+            <p class="text-gray-600">Courses</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 flex items-center">
+          <div class="rounded-full bg-purple-100 p-3 mr-4">
+            <i class="fas fa-star text-purple-600 text-xl"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold" id="active-students">0</h2>
+            <p class="text-gray-600">Active Students</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="bg-white rounded-lg shadow mb-6 p-4">
+        <div
+          class="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+        >
+          <div class="flex-1">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <i class="fas fa-search text-gray-400"></i>
+              </div>
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search students..."
+                class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              />
             </div>
-            <div class="bg-white rounded-lg shadow p-4 flex items-center">
-                <div class="rounded-full bg-green-100 p-3 mr-4">
-                    <i class="fas fa-graduation-cap text-green-600 text-xl"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold" id="average-grade">0.0</h2>
-                    <p class="text-gray-600">Average Grade</p>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4 flex items-center">
-                <div class="rounded-full bg-blue-100 p-3 mr-4">
-                    <i class="fas fa-book text-blue-600 text-xl"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold">12</h2>
-                    <p class="text-gray-600">Courses</p>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4 flex items-center">
-                <div class="rounded-full bg-purple-100 p-3 mr-4">
-                    <i class="fas fa-star text-purple-600 text-xl"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold" id="active-students">0</h2>
-                    <p class="text-gray-600">Active Students</p>
-                </div>
-            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <select
+              id="status-filter"
+              class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            >
+              <option value="all">All Statuses</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Pending">Pending</option>
+            </select>
+            <select
+              id="course-filter"
+              class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            >
+              <option value="all">All Courses</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Business">Business</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Medicine">Medicine</option>
+            </select>
+            <button
+              id="reset-filters"
+              class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+            >
+              <i class="fas fa-sync-alt mr-2"></i>Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Students Table -->
+      <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable"
+                  data-sort="name"
+                >
+                  Student <i class="fas fa-sort ml-1"></i>
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable"
+                  data-sort="email"
+                >
+                  Email <i class="fas fa-sort ml-1"></i>
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable"
+                  data-sort="course"
+                >
+                  Course <i class="fas fa-sort ml-1"></i>
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable"
+                  data-sort="grade"
+                >
+                  Grade <i class="fas fa-sort ml-1"></i>
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable"
+                  data-sort="status"
+                >
+                  Status <i class="fas fa-sort ml-1"></i>
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              id="students-table-body"
+              class="bg-white divide-y divide-gray-200"
+            >
+              <!-- Data will be inserted here by JavaScript -->
+            </tbody>
+          </table>
         </div>
 
-        <!-- Filter Bar -->
-        <div class="bg-white rounded-lg shadow mb-6 p-4">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div class="flex-1">
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fas fa-search text-gray-400"></i>
-                        </div>
-                        <input type="text" id="search-input" placeholder="Search students..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <select id="status-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option value="all">All Statuses</option>
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                        <option value="Pending">Pending</option>
-                    </select>
-                    <select id="course-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option value="all">All Courses</option>
-                        <option value="Computer Science">Computer Science</option>
-                        <option value="Business">Business</option>
-                        <option value="Engineering">Engineering</option>
-                        <option value="Medicine">Medicine</option>
-                    </select>
-                    <button id="reset-filters" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition">
-                        <i class="fas fa-sync-alt mr-2"></i>Reset
-                    </button>
-                </div>
-            </div>
+        <!-- Loading Indicator -->
+        <div
+          id="loading-indicator"
+          class="flex justify-center items-center py-12"
+        >
+          <div
+            class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"
+          ></div>
         </div>
 
-        <!-- Students Table -->
-        <div class="bg-white rounded-lg shadow overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable" data-sort="name">
-                                Student <i class="fas fa-sort ml-1"></i>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable" data-sort="email">
-                                Email <i class="fas fa-sort ml-1"></i>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable" data-sort="course">
-                                Course <i class="fas fa-sort ml-1"></i>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable" data-sort="grade">
-                                Grade <i class="fas fa-sort ml-1"></i>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 sortable" data-sort="status">
-                                Status <i class="fas fa-sort ml-1"></i>
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="students-table-body" class="bg-white divide-y divide-gray-200">
-                        <!-- Data will be inserted here by JavaScript -->
-                    </tbody>
-                </table>
+        <!-- Pagination -->
+        <div
+          id="pagination"
+          class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
+        >
+          <div
+            class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
+          >
+            <div>
+              <p class="text-sm text-gray-700">
+                Showing
+                <span id="pagination-start" class="font-medium">0</span> to
+                <span id="pagination-end" class="font-medium">0</span> of
+                <span id="pagination-total" class="font-medium">0</span> results
+              </p>
             </div>
-
-            <!-- Loading Indicator -->
-            <div id="loading-indicator" class="flex justify-center items-center py-12">
-                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
-            </div>
-
-            <!-- Pagination -->
-            <div id="pagination" class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-                <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                    <div>
-                        <p class="text-sm text-gray-700">
-                            Showing <span id="pagination-start" class="font-medium">0</span> to <span id="pagination-end" class="font-medium">0</span> of <span id="pagination-total" class="font-medium">0</span> results
-                        </p>
-                    </div>
-                    <div>
-                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                            <button id="prev-page" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                Previous
-                            </button>
-                            <div id="page-buttons" class="flex">
-                                <!-- Page buttons will be inserted here -->
-                            </div>
-                            <button id="next-page" class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                Next
-                            </button>
-                        </nav>
-                    </div>
+            <div>
+              <nav
+                class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                aria-label="Pagination"
+              >
+                <button
+                  id="prev-page"
+                  class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                >
+                  Previous
+                </button>
+                <div id="page-buttons" class="flex">
+                  <!-- Page buttons will be inserted here -->
                 </div>
+                <button
+                  id="next-page"
+                  class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                >
+                  Next
+                </button>
+              </nav>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <script>
-        // Student data - in a real application this would come from an API
-        const generateStudents = () => {
-            const firstNames = ['James', 'Mary', 'John', 'Patricia', 'Robert', 'Jennifer', 'Michael', 'Linda', 'William', 'Elizabeth', 'David', 'Susan', 'Richard', 'Jessica', 'Joseph', 'Sarah', 'Thomas', 'Karen', 'Charles', 'Nancy'];
-            const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin'];
-            const courses = ['Computer Science', 'Business', 'Engineering', 'Medicine', 'Arts', 'Law', 'Economics', 'Physics'];
-            const statuses = ['Active', 'Inactive', 'Pending'];
-            
-            const students = [];
-            
-            for (let i = 1; i <= 125; i++) {
-                const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-                const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-                const course = courses[Math.floor(Math.random() * courses.length)];
-                const status = statuses[Math.floor(Math.random() * statuses.length)];
-                const grade = (Math.random() * 3 + 2).toFixed(1); // GPA between 2.0 and 5.0
-                
-                students.push({
-                    id: i,
-                    name: `${firstName} ${lastName}`,
-                    email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@university.edu`,
-                    course: course,
-                    grade: grade,
-                    status: status,
-                    avatar: `https://i.pravatar.cc/40?img=${Math.floor(Math.random() * 70)}`
-                });
-            }
-            
-            return students;
-        };
+      // Student data - in a real application this would come from an API
+      const generateStudents = () => {
+        const firstNames = [
+          "James",
+          "Mary",
+          "John",
+          "Patricia",
+          "Robert",
+          "Jennifer",
+          "Michael",
+          "Linda",
+          "William",
+          "Elizabeth",
+          "David",
+          "Susan",
+          "Richard",
+          "Jessica",
+          "Joseph",
+          "Sarah",
+          "Thomas",
+          "Karen",
+          "Charles",
+          "Nancy",
+        ];
+        const lastNames = [
+          "Smith",
+          "Johnson",
+          "Williams",
+          "Brown",
+          "Jones",
+          "Garcia",
+          "Miller",
+          "Davis",
+          "Rodriguez",
+          "Martinez",
+          "Hernandez",
+          "Lopez",
+          "Gonzalez",
+          "Wilson",
+          "Anderson",
+          "Thomas",
+          "Taylor",
+          "Moore",
+          "Jackson",
+          "Martin",
+        ];
+        const courses = [
+          "Computer Science",
+          "Business",
+          "Engineering",
+          "Medicine",
+          "Arts",
+          "Law",
+          "Economics",
+          "Physics",
+        ];
+        const statuses = ["Active", "Inactive", "Pending"];
 
-        // Global variables
-        let allStudents = [];
-        let filteredStudents = [];
-        let currentPage = 1;
-        const studentsPerPage = 10;
-        let sortField = 'name';
-        let sortDirection = 'asc';
+        const students = [];
 
-        // DOM elements
-        const tableBody = document.getElementById('students-table-body');
-        const loadingIndicator = document.getElementById('loading-indicator');
-        const paginationElement = document.getElementById('pagination');
-        const paginationStart = document.getElementById('pagination-start');
-        const paginationEnd = document.getElementById('pagination-end');
-        const paginationTotal = document.getElementById('pagination-total');
-        const pageButtonsContainer = document.getElementById('page-buttons');
-        const prevButton = document.getElementById('prev-page');
-        const nextButton = document.getElementById('next-page');
-        const searchInput = document.getElementById('search-input');
-        const statusFilter = document.getElementById('status-filter');
-        const courseFilter = document.getElementById('course-filter');
-        const resetButton = document.getElementById('reset-filters');
-        const totalStudentsElement = document.getElementById('total-students');
-        const averageGradeElement = document.getElementById('average-grade');
-        const activeStudentsElement = document.getElementById('active-students');
-        const sortableHeaders = document.querySelectorAll('.sortable');
+        for (let i = 1; i <= 125; i++) {
+          const firstName =
+            firstNames[Math.floor(Math.random() * firstNames.length)];
+          const lastName =
+            lastNames[Math.floor(Math.random() * lastNames.length)];
+          const course = courses[Math.floor(Math.random() * courses.length)];
+          const status = statuses[Math.floor(Math.random() * statuses.length)];
+          const grade = (Math.random() * 3 + 2).toFixed(1); // GPA between 2.0 and 5.0
 
-        // Initialize the application
-        const init = () => {
-            // Generate student data
-            allStudents = generateStudents();
-            // console.log(allStudents);
-            // Apply initial sort
-            sortStudents();
-            
-            // Render the table
-            renderTable();
-            
-            // Render pagination
-            renderPagination();
-            
-            // Update stats
-            updateStats();
-            
-            // Add event listeners
-            addEventListeners();
-        };
+          students.push({
+            id: i,
+            name: `${firstName} ${lastName}`,
+            email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@university.edu`,
+            course: course,
+            grade: grade,
+            status: status,
+            avatar: `https://i.pravatar.cc/40?img=${Math.floor(
+              Math.random() * 70
+            )}`,
+          });
+        }
 
-        // Sort students based on current sort field and direction
-        const sortStudents = () => {
-            filteredStudents.sort((a, b) => {
-                let valueA = a[sortField];
-                let valueB = b[sortField];
-                
-                // Handle numeric values
-                if (sortField === 'grade') {
-                    valueA = parseFloat(valueA);
-                    valueB = parseFloat(valueB);
-                }
-                
-                if (valueA < valueB) {
-                    return sortDirection === 'asc' ? -1 : 1;
-                }
-                if (valueA > valueB) {
-                    return sortDirection === 'asc' ? 1 : -1;
-                }
-                return 0;
-            });
-        };
+        return students;
+      };
 
-        // Filter students based on search and filter criteria
-        const filterStudents = () => {
-            const searchText = searchInput.value.toLowerCase();
-            const statusValue = statusFilter.value;
-            const courseValue = courseFilter.value;
-            
-            filteredStudents = allStudents.filter(student => {
-                const matchesSearch = student.name.toLowerCase().includes(searchText) || 
-                                    student.email.toLowerCase().includes(searchText);
-                const matchesStatus = statusValue === 'all' || student.status === statusValue;
-                const matchesCourse = courseValue === 'all' || student.course === courseValue;
-                
-                return matchesSearch && matchesStatus && matchesCourse;
-            });
-            
-            // Reset to first page after filtering
-            currentPage = 1;
-            
-            // Re-sort after filtering
-            sortStudents();
-            
-            // Re-render table and pagination
-            renderTable();
-            renderPagination();
-            updateStats();
-        };
+      // Global variables
+      let allStudents = [];
+      let filteredStudents = [];
+      let currentPage = 1;
+      const studentsPerPage = 10;
+      let sortField = "name";
+      let sortDirection = "asc";
 
-        // Render the student table
-        const renderTable = () => {
-            // Show loading indicator
-            loadingIndicator.classList.remove('hidden');
-            tableBody.innerHTML = '';
-            
-            // Calculate the students to show on the current page
-            const startIndex = (currentPage - 1) * studentsPerPage;
-            const endIndex = Math.min(startIndex + studentsPerPage, filteredStudents.length);
-            const studentsToShow = filteredStudents.slice(startIndex, endIndex);
-            // console.log(studentsToShow);
-            // Simulate loading delay
-            setTimeout(() => {
-                loadingIndicator.classList.add('hidden');
-                
-                if (studentsToShow.length === 0) {
-                    tableBody.innerHTML = `
+      // DOM elements
+      const tableBody = document.getElementById("students-table-body");
+      const loadingIndicator = document.getElementById("loading-indicator");
+      const paginationElement = document.getElementById("pagination");
+      const paginationStart = document.getElementById("pagination-start");
+      const paginationEnd = document.getElementById("pagination-end");
+      const paginationTotal = document.getElementById("pagination-total");
+      const pageButtonsContainer = document.getElementById("page-buttons");
+      const prevButton = document.getElementById("prev-page");
+      const nextButton = document.getElementById("next-page");
+      const searchInput = document.getElementById("search-input");
+      const statusFilter = document.getElementById("status-filter");
+      const courseFilter = document.getElementById("course-filter");
+      const resetButton = document.getElementById("reset-filters");
+      const totalStudentsElement = document.getElementById("total-students");
+      const averageGradeElement = document.getElementById("average-grade");
+      const activeStudentsElement = document.getElementById("active-students");
+      const sortableHeaders = document.querySelectorAll(".sortable");
+
+      // Initialize the application
+      const init = () => {
+        // Generate student data
+        allStudents = generateStudents();
+        // console.log(allStudents);
+        // Apply initial sort
+        sortStudents();
+
+        // Render the table
+        renderTable();
+
+        // Render pagination
+        renderPagination();
+
+        // Update stats
+        updateStats();
+
+        // Add event listeners
+        addEventListeners();
+      };
+
+      // Sort students based on current sort field and direction
+      const sortStudents = () => {
+        filteredStudents.sort((a, b) => {
+          let valueA = a[sortField];
+          let valueB = b[sortField];
+
+          // Handle numeric values
+          if (sortField === "grade") {
+            valueA = parseFloat(valueA);
+            valueB = parseFloat(valueB);
+          }
+
+          if (valueA < valueB) {
+            return sortDirection === "asc" ? -1 : 1;
+          }
+          if (valueA > valueB) {
+            return sortDirection === "asc" ? 1 : -1;
+          }
+          return 0;
+        });
+      };
+
+      // Filter students based on search and filter criteria
+      const filterStudents = () => {
+        const searchText = searchInput.value.toLowerCase();
+        const statusValue = statusFilter.value;
+        const courseValue = courseFilter.value;
+
+        filteredStudents = allStudents.filter((student) => {
+          const matchesSearch =
+            student.name.toLowerCase().includes(searchText) ||
+            student.email.toLowerCase().includes(searchText);
+          const matchesStatus =
+            statusValue === "all" || student.status === statusValue;
+          const matchesCourse =
+            courseValue === "all" || student.course === courseValue;
+
+          return matchesSearch && matchesStatus && matchesCourse;
+        });
+
+        // Reset to first page after filtering
+        currentPage = 1;
+
+        // Re-sort after filtering
+        sortStudents();
+
+        // Re-render table and pagination
+        renderTable();
+        renderPagination();
+        updateStats();
+      };
+
+      // Render the student table
+      const renderTable = () => {
+        // Show loading indicator
+        loadingIndicator.classList.remove("hidden");
+        tableBody.innerHTML = "";
+
+        // Calculate the students to show on the current page
+        const startIndex = (currentPage - 1) * studentsPerPage;
+        const endIndex = Math.min(
+          startIndex + studentsPerPage,
+          filteredStudents.length
+        );
+        const studentsToShow = filteredStudents.slice(startIndex, endIndex);
+        // console.log(studentsToShow);
+        // Simulate loading delay
+        setTimeout(() => {
+          loadingIndicator.classList.add("hidden");
+
+          if (studentsToShow.length === 0) {
+            tableBody.innerHTML = `
                         <tr>
                             <td colspan="6" class="px-6 py-4 text-center text-gray-500">
                                 No students found matching your criteria.
                             </td>
                         </tr>
                     `;
-                    return;
-                }
-                
-                studentsToShow.forEach(student => {
-                    const row = document.createElement('tr');
-                    // consol.log(row);
-                    // Status badge color
-                    let statusColor = 'bg-gray-100 text-gray-800';
-                    if (student.status === 'Active') statusColor = 'bg-green-100 text-green-800';
-                    if (student.status === 'Inactive') statusColor = 'bg-red-100 text-red-800';
-                    if (student.status === 'Pending') statusColor = 'bg-yellow-100 text-yellow-800';
-                    
-                    // Grade color
-                    let gradeColor = 'text-gray-800';
-                    if (student.grade >= 4.0) gradeColor = 'text-green-600';
-                    else if (student.grade >= 3.0) gradeColor = 'text-blue-600';
-                    else if (student.grade >= 2.0) gradeColor = 'text-yellow-600';
-                    
-                    row.innerHTML = `
+            return;
+          }
+
+          studentsToShow.forEach((student) => {
+            const row = document.createElement("tr");
+            // consol.log(row);
+            // Status badge color
+            let statusColor = "bg-gray-100 text-gray-800";
+            if (student.status === "Active")
+              statusColor = "bg-green-100 text-green-800";
+            if (student.status === "Inactive")
+              statusColor = "bg-red-100 text-red-800";
+            if (student.status === "Pending")
+              statusColor = "bg-yellow-100 text-yellow-800";
+
+            // Grade color
+            let gradeColor = "text-gray-800";
+            if (student.grade >= 4.0) gradeColor = "text-green-600";
+            else if (student.grade >= 3.0) gradeColor = "text-blue-600";
+            else if (student.grade >= 2.0) gradeColor = "text-yellow-600";
+
+            row.innerHTML = `
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="${student.avatar}" alt="${student.name}">
+                                    <img class="h-10 w-10 rounded-full" src="${
+                                      student.avatar
+                                    }" alt="${student.name}">
                                 </div>
                                 <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">${student.name}</div>
-                                    <div class="text-sm text-gray-500">ID: ${student.id.toString().padStart(4, '0')}</div>
+                                    <div class="text-sm font-medium text-gray-900">${
+                                      student.name
+                                    }</div>
+                                    <div class="text-sm text-gray-500">ID: ${student.id
+                                      .toString()
+                                      .padStart(4, "0")}</div>
                                 </div>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">${student.email}</div>
+                            <div class="text-sm text-gray-900">${
+                              student.email
+                            }</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">${student.course}</div>
+                            <div class="text-sm text-gray-900">${
+                              student.course
+                            }</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${gradeColor}">
@@ -356,165 +503,203 @@
                             </button>
                         </td>
                     `;
-                    
-                    tableBody.appendChild(row);
-                });
-            }, 500);
-        };
 
-        // Render pagination controls
-        const renderPagination = () => {
-            const totalPages = Math.ceil(filteredStudents.length / studentsPerPage);
-            
-            // Update pagination info
-            paginationStart.textContent = filteredStudents.length === 0 ? 0 : (currentPage - 1) * studentsPerPage + 1;
-            paginationEnd.textContent = Math.min(currentPage * studentsPerPage, filteredStudents.length);
-            paginationTotal.textContent = filteredStudents.length;
-            
-            // Clear existing page buttons
-            pageButtonsContainer.innerHTML = '';
-            
-            // Determine which page buttons to show
-            let startPage = Math.max(1, currentPage - 2);
-            let endPage = Math.min(totalPages, startPage + 4);
-            
-            if (endPage - startPage < 4) {
-                startPage = Math.max(1, endPage - 4);
-            }
-            
-            // Create page buttons
-            for (let i = startPage; i <= endPage; i++) {
-                const pageButton = document.createElement('button');
-                pageButton.classList.add('relative', 'inline-flex', 'items-center', 'px-4', 'py-2', 'border', 'text-sm', 'font-medium');
-                
-                if (i === currentPage) {
-                    pageButton.classList.add('z-10', 'bg-indigo-50', 'border-indigo-500', 'text-indigo-600');
-                } else {
-                    pageButton.classList.add('bg-white', 'border-gray-300', 'text-gray-500', 'hover:bg-gray-50');
-                }
-                
-                pageButton.textContent = i;
-                pageButton.addEventListener('click', () => {
-                    currentPage = i;
-                    renderTable();
-                    renderPagination();
-                });
-                
-                pageButtonsContainer.appendChild(pageButton);
-            }
-            
-            // Enable/disable previous and next buttons
-            prevButton.disabled = currentPage === 1;
-            nextButton.disabled = currentPage === totalPages || totalPages === 0;
-            
-            if (prevButton.disabled) {
-                prevButton.classList.add('opacity-50', 'cursor-not-allowed');
+            tableBody.appendChild(row);
+          });
+        }, 500);
+      };
+
+      // Render pagination controls
+      const renderPagination = () => {
+        const totalPages = Math.ceil(filteredStudents.length / studentsPerPage);
+
+        // Update pagination info
+        paginationStart.textContent =
+          filteredStudents.length === 0
+            ? 0
+            : (currentPage - 1) * studentsPerPage + 1;
+        paginationEnd.textContent = Math.min(
+          currentPage * studentsPerPage,
+          filteredStudents.length
+        );
+        paginationTotal.textContent = filteredStudents.length;
+
+        // Clear existing page buttons
+        pageButtonsContainer.innerHTML = "";
+
+        // Determine which page buttons to show
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, startPage + 4);
+
+        if (endPage - startPage < 4) {
+          startPage = Math.max(1, endPage - 4);
+        }
+
+        // Create page buttons
+        for (let i = startPage; i <= endPage; i++) {
+          const pageButton = document.createElement("button");
+          pageButton.classList.add(
+            "relative",
+            "inline-flex",
+            "items-center",
+            "px-4",
+            "py-2",
+            "border",
+            "text-sm",
+            "font-medium"
+          );
+
+          if (i === currentPage) {
+            pageButton.classList.add(
+              "z-10",
+              "bg-indigo-50",
+              "border-indigo-500",
+              "text-indigo-600"
+            );
+          } else {
+            pageButton.classList.add(
+              "bg-white",
+              "border-gray-300",
+              "text-gray-500",
+              "hover:bg-gray-50"
+            );
+          }
+
+          pageButton.textContent = i;
+          pageButton.addEventListener("click", () => {
+            currentPage = i;
+            renderTable();
+            renderPagination();
+          });
+
+          pageButtonsContainer.appendChild(pageButton);
+        }
+
+        // Enable/disable previous and next buttons
+        prevButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === totalPages || totalPages === 0;
+
+        if (prevButton.disabled) {
+          prevButton.classList.add("opacity-50", "cursor-not-allowed");
+        } else {
+          prevButton.classList.remove("opacity-50", "cursor-not-allowed");
+        }
+
+        if (nextButton.disabled) {
+          nextButton.classList.add("opacity-50", "cursor-not-allowed");
+        } else {
+          nextButton.classList.remove("opacity-50", "cursor-not-allowed");
+        }
+      };
+
+      // Update statistics
+      const updateStats = () => {
+        totalStudentsElement.textContent = filteredStudents.length;
+
+        // Calculate average grade
+        const totalGrade = filteredStudents.reduce(
+          (sum, student) => sum + parseFloat(student.grade),
+          0
+        );
+        const avgGrade =
+          filteredStudents.length > 0
+            ? (totalGrade / filteredStudents.length).toFixed(1)
+            : "0.0";
+        averageGradeElement.textContent = avgGrade;
+
+        // Count active students
+        const activeCount = filteredStudents.filter(
+          (student) => student.status === "Active"
+        ).length;
+        activeStudentsElement.textContent = activeCount;
+      };
+
+      // Add event listeners
+      const addEventListeners = () => {
+        // Search input
+        searchInput.addEventListener("input", debounce(filterStudents, 300));
+
+        // Filter dropdowns
+        statusFilter.addEventListener("change", filterStudents);
+        courseFilter.addEventListener("change", filterStudents);
+
+        // Reset filters button
+        resetButton.addEventListener("click", () => {
+          searchInput.value = "";
+          statusFilter.value = "all";
+          courseFilter.value = "all";
+          filterStudents();
+        });
+
+        // Previous and next page buttons
+        prevButton.addEventListener("click", () => {
+          if (currentPage > 1) {
+            currentPage--;
+            renderTable();
+            renderPagination();
+          }
+        });
+
+        nextButton.addEventListener("click", () => {
+          const totalPages = Math.ceil(
+            filteredStudents.length / studentsPerPage
+          );
+          if (currentPage < totalPages) {
+            currentPage++;
+            renderTable();
+            renderPagination();
+          }
+        });
+
+        // Sortable headers
+        sortableHeaders.forEach((header) => {
+          header.addEventListener("click", () => {
+            const newSortField = header.getAttribute("data-sort");
+
+            // If clicking the same field, toggle direction
+            if (sortField === newSortField) {
+              sortDirection = sortDirection === "asc" ? "desc" : "asc";
             } else {
-                prevButton.classList.remove('opacity-50', 'cursor-not-allowed');
+              // If clicking a new field, default to ascending
+              sortField = newSortField;
+              sortDirection = "asc";
             }
-            
-            if (nextButton.disabled) {
-                nextButton.classList.add('opacity-50', 'cursor-not-allowed');
-            } else {
-                nextButton.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
-        };
 
-        // Update statistics
-        const updateStats = () => {
-            totalStudentsElement.textContent = filteredStudents.length;
-            
-            // Calculate average grade
-            const totalGrade = filteredStudents.reduce((sum, student) => sum + parseFloat(student.grade), 0);
-            const avgGrade = filteredStudents.length > 0 ? (totalGrade / filteredStudents.length).toFixed(1) : '0.0';
-            averageGradeElement.textContent = avgGrade;
-            
-            // Count active students
-            const activeCount = filteredStudents.filter(student => student.status === 'Active').length;
-            activeStudentsElement.textContent = activeCount;
-        };
+            // Update sort indicators
+            sortableHeaders.forEach((h) => {
+              const icon = h.querySelector("i");
+              if (h.getAttribute("data-sort") === sortField) {
+                icon.className =
+                  sortDirection === "asc"
+                    ? "fas fa-sort-up ml-1"
+                    : "fas fa-sort-down ml-1";
+              } else {
+                icon.className = "fas fa-sort ml-1";
+              }
+            });
 
-        // Add event listeners
-        const addEventListeners = () => {
-            // Search input
-            searchInput.addEventListener('input', debounce(filterStudents, 300));
-            
-            // Filter dropdowns
-            statusFilter.addEventListener('change', filterStudents);
-            courseFilter.addEventListener('change', filterStudents);
-            
-            // Reset filters button
-            resetButton.addEventListener('click', () => {
-                searchInput.value = '';
-                statusFilter.value = 'all';
-                courseFilter.value = 'all';
-                filterStudents();
-            });
-            
-            // Previous and next page buttons
-            prevButton.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderTable();
-                    renderPagination();
-                }
-            });
-            
-            nextButton.addEventListener('click', () => {
-                const totalPages = Math.ceil(filteredStudents.length / studentsPerPage);
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderTable();
-                    renderPagination();
-                }
-            });
-            
-            // Sortable headers
-            sortableHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const newSortField = header.getAttribute('data-sort');
-                    
-                    // If clicking the same field, toggle direction
-                    if (sortField === newSortField) {
-                        sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-                    } else {
-                        // If clicking a new field, default to ascending
-                        sortField = newSortField;
-                        sortDirection = 'asc';
-                    }
-                    
-                    // Update sort indicators
-                    sortableHeaders.forEach(h => {
-                        const icon = h.querySelector('i');
-                        if (h.getAttribute('data-sort') === sortField) {
-                            icon.className = sortDirection === 'asc' ? 'fas fa-sort-up ml-1' : 'fas fa-sort-down ml-1';
-                        } else {
-                            icon.className = 'fas fa-sort ml-1';
-                        }
-                    });
-                    
-                    // Re-sort and re-render
-                    sortStudents();
-                    renderTable();
-                });
-            });
-        };
+            // Re-sort and re-render
+            sortStudents();
+            renderTable();
+          });
+        });
+      };
 
-        // Debounce function for search input
-        const debounce = (func, wait) => {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
+      // Debounce function for search input
+      const debounce = (func, wait) => {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
         };
+      };
 
-        // Initialize the application when the DOM is loaded
-        document.addEventListener('DOMContentLoaded', init);
+      // Initialize the application when the DOM is loaded
+      document.addEventListener("DOMContentLoaded", init);
     </script>
-</body>
+  </body>
 </html>
