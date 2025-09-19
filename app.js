@@ -13,7 +13,7 @@ const rules = {
   name: (v) => (!v.trim() || v.length < 3 ? "name must be 3 characters" : ""),
   email: (v) => (!v.trim() || !v.includes("@") ? "enter a valid email" : ""),
   password: (v) => (!v.trim() || v.length < 6 ? "password must be 6 characters" : ""),
-  confirmPassword: (v) => (!v.trim() || !v == state.values.password ? "Same as password" : ""),
+  confirmPassword: (v) => (!v.trim() || !(v == state.values.password) ? "Same as password" : ""),
 };
 
 const formHandler = (e) => {
