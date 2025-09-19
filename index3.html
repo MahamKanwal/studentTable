@@ -10,35 +10,54 @@
 </head>
 <body>
   <form action="" class="p-3">
-
     <div class="py-2 font-light">
-      <label><i class="fa-solid fa-circle-user text-blue-500"></i> Full Name</label>
-        <input type="text" class="rounded-lg p-1 w-full border border-blue-800" id="fullName" placeholder="Enter your name" required/>
-        <div class="error">your name is must be 3 charachters</div>
+      <label
+        ><i class="fa-solid fa-circle-user text-blue-500"></i> Full Name</label
+      >
+      <input
+        type="text"
+        class="rounded-lg p-1 w-full border border-blue-800"
+        id="fullName"
+        placeholder="Enter your name"
+      />
+      <div class="error">Your name is must be 3 charachters</div>
     </div>
 
     <div class="py-2 font-light">
-      <label><i class="fa-solid fa-envelope text-blue-500"></i> Email address</label>
-      <div class="relative mt-1">
-        <i class="fa-solid fa-envelope absolute text-gray-500 left-3 top-1/2 -translate-y-1/2"></i>
-        <input type="email" class="rounded-lg pl-10 py-1 w-full border border-blue-800" placeholder="Enter your email" id="email" required/>
-      </div>
+      <label
+        ><i class="fa-solid fa-envelope text-blue-500"></i> Email address</label
+      >
+      <input
+        type="email"
+        class="rounded-lg pl-10 py-1 w-full border border-blue-800"
+        placeholder="Enter your email"
+        id="email"
+      />
+      <div class="error">Enter @ and .</div>
     </div>
 
     <div class="py-2 font-light">
       <label><i class="fa-solid fa-lock text-blue-500"></i> Password</label>
-      <div class="relative mt-1">
-        <i class="fa-solid fa-lock absolute text-gray-500 left-3 top-1/2 -translate-y-1/2"></i>
-        <input type="password" class="rounded-lg pl-10 py-1 w-full border border-blue-800" placeholder="enter a password" id="password"  required/>
-      </div>
+      <input
+        type="password"
+        class="rounded-lg pl-10 py-1 w-full border border-blue-800"
+        placeholder="enter a password"
+        id="password"
+      />
+      <div class="error">Password must be 6 charachters</div>
     </div>
 
     <div class="py-2 font-light">
-      <label><i class="fa-solid fa-lock text-blue-500"></i>Confirm Password</label>
-      <div class="relative mt-1">
-        <i class="fa-solid fa-lock absolute text-gray-500 left-3 top-1/2 -translate-y-1/2"></i>
-        <input type="password" class="rounded-lg pl-10 py-1 w-full border border-blue-800" placeholder="Confirm Password" id="confirmPassword" required/>
-      </div>
+      <label
+        ><i class="fa-solid fa-lock text-blue-500"></i>Confirm Password</label
+      >
+      <input
+        type="password"
+        class="rounded-lg pl-10 py-1 w-full border border-blue-800"
+        placeholder="Confirm Password"
+        id="confirmPassword"
+      />
+      <div class="error">Password does not match</div>
     </div>
 
     <div class="mt-3">
