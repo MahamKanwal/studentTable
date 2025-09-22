@@ -48,10 +48,10 @@ const showError = (id, message = "") => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  let hasError = false;
-  let entries = Object.entries(state.values);
+  const hasError = false;
+  const entries = Object.entries(state.values);
   for (let e of entries) {
-    let error = validateField(e[0], e[1]);
+    const error = validateField(e[0], e[1]);
     if (error) hasError = true;
   }
   if (!hasError) console.log(state.values);
