@@ -4,11 +4,6 @@
 // const confirmPassword = document.getElementById("confirmPassword");
 const form = document.getElementById("form");
 const inputs = form.querySelectorAll("input");
-const state = {
-  values: { name: "", email: "", password: "", confirmPassword: "" },
-  errors: {},
-};
-
 for (let i of inputs) {
   i.addEventListener("blur", () => {
     hideError(i.id);
@@ -18,11 +13,17 @@ for (let i of inputs) {
   });
 }
 
+const state = {
+  values: { name: "", email: "", password: "", confirmPassword: "" },
+  errors: {},
+};
+
+
 const rules = {
   name: v => (!v.trim() || v.length < 3 ? "name must be 3 characters" : ""),
   email: v => (!v.trim() || !v.includes("@") ? "enter a valid email" : ""),
-  password: v => !v.trim() || v.length < 6 ? "password must be 6 characters" : "",
-  confirmPassword: v => !v.trim() || !(v == state.values.password) ? "Same as password" : "",
+  password: v => (!v.trim() || v.length < 6 ? "password must be 6 characters" : ""),
+  confirmPassword: v => (!v.trim() || !(v == state.values.password) ? "Same as password" : ""),
 };
 
 const validateField = (id, value) => {
@@ -48,7 +49,7 @@ const showError = (id, message = "") => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  const hasError = false;
+  let hasError = false;
   const entries = Object.entries(state.values);
   for (let e of entries) {
     const error = validateField(e[0], e[1]);
