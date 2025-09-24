@@ -58,13 +58,13 @@
 
 
 const form = document.getElementById("form");
-const input= form.querySelectorAll("input");
+const input = form.querySelectorAll("input");
 for(let i of input){
  i.addEventListener("blur", ()=>{
-   hideError(i.[id]);
+   hideError(i.id);
 });
 i.addEventListener("focus", ()=>{
-   hideError(i.[id],state.errors.i[id]);
+   hideError(i.id,state.errors[i.id]);
 });
 };
 
