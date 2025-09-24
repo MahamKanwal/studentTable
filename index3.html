@@ -21,7 +21,6 @@
           type="text"
           class="rounded-lg p-1 w-full border border-blue-800"
           id="name"
-          required
         />
         <div class="text-red-600" data-error="name"></div>
       </div>
@@ -32,19 +31,21 @@
           type="email"
           class="rounded-lg p-1 w-full border border-blue-800"
           id="email"
-          required
         />
         <div class="text-red-600" data-error="email"></div>
       </div>
 
       <div class="py-2 font-light">
-        <label><i class="fa-solid fa-lock text-blue-500"></i> Password</label>
-        <input
+        <label><i class="fa-solid fa-lock text-blue-500"></i> Password
+        </label>
+        <div  class="relative">
+          <input
           type="password"
           class="rounded-lg p-1 w-full border border-blue-800"
           id="password"
-          required
         />
+         <i class="fa-solid fa-eye absolute right-3 top-2 cursor-pointer" onclick="togglePassword(this)"></i>
+        </div>
         <div class="text-red-600" data-error="password"></div>
       </div>
 
@@ -53,12 +54,14 @@
           ><i class="fa-solid fa-lock text-blue-500"></i> Confirm
           Password</label
         >
-        <input
+         <div  class="relative">
+          <input
           type="password"
           class="rounded-lg p-1 w-full border border-blue-800"
           id="confirmPassword"
-          required
         />
+         <i class="fa-solid fa-eye absolute right-3 top-2 cursor-pointer" onclick="togglePassword(this)"></i>
+        </div>
         <div class="text-red-600" data-error="confirmPassword"></div>
       </div>
 

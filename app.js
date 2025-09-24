@@ -58,25 +58,27 @@
 
 
 const form = document.getElementById("form");
-const input = form.querySelectorAll("input");
-for(let i of input){
+const inputs = form.querySelectorAll("input");
+for(let i of inputs){
  i.addEventListener("blur", ()=>{
    hideError(i.id);
 });
 i.addEventListener("focus", ()=>{
-   hideError(i.id,state.errors[i.id]);
+  showError(i.id,state.errors[i.id]);
 });
 };
 
-const state = {
+const intialValues ={
   values:{ name:"", email: "", password: "", confirmPassword: ""},
   errors:{}
 };
 
+const state = {...intialValues};
+console.log(state);
 const rules = {
-  name: v => (!v.trim() || v > 3 ? "Name must be 3 characters" : ""),
+  name: v => (!v.trim() || v.length < 3 ? "Name must be 3 characters" : ""),
   email: v => (!v.trim() || !v.includes("@") ? "Enter a valid email" : ""),
-  password: v => (!v.trim() || v.length > 6 ? "Password must be 6 characters" : ""),
+  password: v => (!v.trim() || v.length < 6 ? "Password must be 6 characters" : ""),
   confirmPassword: v => (!v.trim() || !(v == state.values.password) ? "Password doesn't match" : ""),
 };
 
@@ -106,10 +108,29 @@ e.preventDefault();
 let hasError = false;
 let entries = Object.entries(state.values);
 for (let e of entries){
-let error = ValidityState(e[0],e[1]);
+let error = formValidate(e[0],e[1]);
 if(error) hasError = true;}
-if(!hasError) console.log(state.values);
+if(!hasError) {
+  form.reset();
+  console.log(state.values);
+  state = { ...intialValues};
+}
 };
+
+const togglePassword = (e) =>{
+e.classList.toggle("fa-eye");
+e.classList.toggle("fa-eye-slash");
+let passwordInput = e.previousElementSibling;
+let inputType = e.previousElementSibling.type;
+passwordInput.type = inputType == "text" ? "password" : "text";
+ }
+
 
 form.addEventListener("submit",formSubmit);
 form.addEventListener("input",formHandler);
+
+// let a = [1];
+// let b = a;
+// b.push(2);
+// console.log(b);
+// console.log(a);
