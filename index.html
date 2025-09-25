@@ -62,10 +62,8 @@
             <p class="text-gray-500">Average Grade</p>
           </div>
         </div>
-
         <div class="rounded-lg flex items-center p-4 shadow">
           <div class="rounded-full p-3 mr-4 bg-blue-100">
-            `
             <i class="fa-solid fa-book text-xl text-blue-600"></i>
           </div>
           <div>
@@ -122,12 +120,17 @@
               <option value="Medicine">Medicine</option>
               <option value="Medicine">Law</option>
             </select>
-            <button class="px-4 py-2 bg-gray-100 rounded-lg flex flex-row">
+            <button class="px-4 py-2 bg-gray-100 rounded-lg flex items-center">
               <i class="fa-solid fa-rotate mr-2"></i>Reset
             </button>
           </div>
         </div>
       </div>
+
+   <button class="px-4 py-2 bg-gray-100 rounded-lg mb-2 ml-auto block" onclick="openDrawer()">
+             Add Student
+            </button>
+
 
       <!-- Student Table -->
       <div class="rounded-lg shadow">
@@ -403,6 +406,81 @@
         </div>
       </div>
     </div>
+
+<!-- Drawer Main -->
+<div class="w-full min-h-screen fixed bg-black/60 inset-0 hidden" id="drawerMain">
+
+  <!-- Drawer-->
+<div class="absolute top-0 right-0 w-full max-w-[500px] bg-white h-full duration-500 delay-200 p-3 flex flex-col" id="drawer">
+<!-- Drawer Header -->
+<header class="flex justify-between items-center border-b-2 border-gray pb-2">
+  <h1 class="text-lg">Add Student</h1>
+  <button><i class="fa-solid fa-xmark"></i></button>
+</header>
+<!-- Header Body -->
+  <form action="" class="flex-1" id="form">
+      <div class="py-2 font-light">
+        <label
+          ><i class="fa-solid fa-circle-user text-blue-500"></i> Name</label
+        >
+        <input
+          type="text"
+          class="rounded-lg p-1 w-full border border-blue-800"
+          id="name"
+        />
+        <div class="text-red-600" data-error="name"></div>
+      </div>
+
+      <div class="py-2 font-light">
+        <label><i class="fa-solid fa-envelope text-blue-500"></i> Email </label>
+        <input
+          type="email"
+          class="rounded-lg p-1 w-full border border-blue-800"
+          id="email"
+        />
+        <div class="text-red-600" data-error="email"></div>
+      </div>
+
+      <div class="py-2 font-light">
+        <label><i class="fa-solid fa-lock text-blue-500"></i> Password
+        </label>
+        <div  class="relative">
+          <input
+          type="password"
+          class="rounded-lg p-1 w-full border border-blue-800"
+          id="password"
+        />
+         <i class="fa-solid fa-eye absolute right-3 top-2 cursor-pointer" onclick="togglePassword(this)"></i>
+        </div>
+        <div class="text-red-600" data-error="password"></div>
+      </div>
+
+      <div class="py-2 font-light">
+        <label
+          ><i class="fa-solid fa-lock text-blue-500"></i> Confirm
+          Password</label
+        >
+         <div  class="relative">
+          <input
+          type="password"
+          class="rounded-lg p-1 w-full border border-blue-800"
+          id="confirmPassword"
+        />
+         <i class="fa-solid fa-eye absolute right-3 top-2 cursor-pointer" onclick="togglePassword(this)"></i>
+        </div>
+        <div class="text-red-600" data-error="confirmPassword"></div>
+      </div>
+
+    </form>
+ <!-- Drawer Footer -->
+<div class="flex gap-2 justify-end border-t-2 border-gray-200">
+<button class="rounded-lg border px-5 py-1">Cancel</button>
+<button class="rounded-lg border px-5 py-1">Save</button>
+</div>
+
+</div>
+</div>
+
     <script src="app.js"></script>
   </body>
 </html>
