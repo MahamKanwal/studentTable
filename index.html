@@ -102,17 +102,13 @@
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4">
-            <select
-              class="px-4 py-2 border border-gray-300 rounded-lg w-full focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2"
-            >
+            <select class="px-4 py-2 border border-gray-300 rounded-lg w-full">
               <option value="All Statuses">All Statuses</option>
               <option value="Active">Active</option>
               <option value="Inactive">Inactive</option>
               <option value="Pending">Pending</option>
             </select>
-            <select
-              class="px-4 py-2 border border-gray-300 rounded-lg w-full focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2"
-            >
+            <select class="px-4 py-2 border border-gray-300 rounded-lg w-full">
               <option value="All Courses">All Courses</option>
               <option value="Computer Science">Computer Science</option>
               <option value="Business">Business</option>
@@ -127,10 +123,12 @@
         </div>
       </div>
 
-   <button class="px-4 py-2 bg-gray-100 rounded-lg mb-2 ml-auto block" onclick="openDrawer()">
-             Add Student
-            </button>
-
+      <button
+        class="px-4 py-2 bg-gray-100 rounded-lg mb-4 ml-auto block"
+        onclick="openDrawer()"
+      >
+        <i class="fa-solid fa-plus"></i> Add Student
+      </button>
 
       <!-- Student Table -->
       <div class="rounded-lg shadow">
@@ -407,79 +405,96 @@
       </div>
     </div>
 
-<!-- Drawer Main -->
-<div class="w-full min-h-screen fixed bg-black/60 inset-0 hidden" id="drawerMain">
-
-  <!-- Drawer-->
-<div class="absolute top-0 right-0 w-full max-w-[500px] bg-white h-full duration-500 delay-200 p-3 flex flex-col" id="drawer">
-<!-- Drawer Header -->
-<header class="flex justify-between items-center border-b-2 border-gray pb-2">
-  <h1 class="text-lg">Add Student</h1>
-  <button><i class="fa-solid fa-xmark"></i></button>
-</header>
-<!-- Header Body -->
-  <form action="" class="flex-1" id="form">
-      <div class="py-2 font-light">
-        <label
-          ><i class="fa-solid fa-circle-user text-blue-500"></i> Name</label
+    <!-- Drawer Main -->
+    <div
+      class="w-full min-h-screen fixed bg-black/60 inset-0 hidden"
+      id="drawerMain"
+    >
+      <!-- Drawer-->
+      <div
+        class="absolute top-0 right-0 w-full max-w-[0px] bg-white h-full duration-500 delay-200 p-3 flex flex-col"
+        id="drawer"
+      >
+        <!-- Drawer Header -->
+        <header
+          class="flex justify-between items-center border-b-2 border-gray pb-2"
         >
-        <input
-          type="text"
-          class="rounded-lg p-1 w-full border border-blue-800"
-          id="name"
-        />
-        <div class="text-red-600" data-error="name"></div>
-      </div>
+          <h1 class="text-lg">Add Student</h1>
+          <button><i class="fa-solid fa-xmark"></i></button>
+        </header>
+        <!-- Header Body -->
+        <form action="" class="flex-1" id="form">
+          <div class="py-2 font-light">
+            <label
+              ><i class="fa-solid fa-circle-user text-blue-500"></i> Name</label
+            >
+            <input
+              type="text"
+              class="rounded-lg p-1 w-full border border-blue-800"
+              id="name"
+            />
+            <div class="text-red-600 text-sm" data-error="name"></div>
+          </div>
 
-      <div class="py-2 font-light">
-        <label><i class="fa-solid fa-envelope text-blue-500"></i> Email </label>
-        <input
-          type="email"
-          class="rounded-lg p-1 w-full border border-blue-800"
-          id="email"
-        />
-        <div class="text-red-600" data-error="email"></div>
-      </div>
+          <div class="py-2 font-light">
+            <label
+              ><i class="fa-solid fa-envelope text-blue-500"></i> Email
+            </label>
+            <input
+              type="email"
+              class="rounded-lg p-1 w-full border border-blue-800"
+              id="email"
+            />
+            <div class="text-red-600 text-sm" data-error="email"></div>
+          </div>
 
-      <div class="py-2 font-light">
-        <label><i class="fa-solid fa-lock text-blue-500"></i> Password
-        </label>
-        <div  class="relative">
-          <input
-          type="password"
-          class="rounded-lg p-1 w-full border border-blue-800"
-          id="password"
-        />
-         <i class="fa-solid fa-eye absolute right-3 top-2 cursor-pointer" onclick="togglePassword(this)"></i>
+          <div class="py-2 font-light">
+            <label
+              ><i class="fa-solid fa-id-card text-blue-500"></i> Roll No</label
+            >
+            <input
+              type="text"
+              class="rounded-lg p-1 w-full border border-blue-800"
+              id="rollNo"
+            />
+            <div class="text-red-600 text-sm" data-error="rollNo"></div>
+          </div>
+
+          <div>
+            <select
+              id="course"
+              class="py-2 px-1 border border-blue-800 rounded-lg w-full font-light mt-5"
+            >
+              <option value="Course">Select a course</option>
+              <option value="Business">Business</option>
+              <option value="Law">Law</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Medicine">Medicine</option>
+            </select>
+            <div class="text-red-600 text-sm" data-error="course"></div>
+          </div>
+
+          <div>
+            <select
+              id="status"
+              class="py-2 px-1 border border-blue-800 rounded-lg w-full font-light mt-5"
+            >
+              <option value="Status">Select a status</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Pending">Pending</option>
+            </select>
+            <div class="text-red-600 text-sm" data-error="status"></div>
+          </div>
+        </form>
+        <!-- Drawer Footer -->
+        <div class="flex gap-2 justify-end border-t-2 border-gray-200 pt-3">
+          <button class="rounded-lg border px-5 py-1">Cancel</button>
+          <button class="rounded-lg border px-5 py-1">Save</button>
         </div>
-        <div class="text-red-600" data-error="password"></div>
       </div>
-
-      <div class="py-2 font-light">
-        <label
-          ><i class="fa-solid fa-lock text-blue-500"></i> Confirm
-          Password</label
-        >
-         <div  class="relative">
-          <input
-          type="password"
-          class="rounded-lg p-1 w-full border border-blue-800"
-          id="confirmPassword"
-        />
-         <i class="fa-solid fa-eye absolute right-3 top-2 cursor-pointer" onclick="togglePassword(this)"></i>
-        </div>
-        <div class="text-red-600" data-error="confirmPassword"></div>
-      </div>
-
-    </form>
- <!-- Drawer Footer -->
-<div class="flex gap-2 justify-end border-t-2 border-gray-200">
-<button class="rounded-lg border px-5 py-1">Cancel</button>
-<button class="rounded-lg border px-5 py-1">Save</button>
-</div>
-
-</div>
-</div>
+    </div>
 
     <script src="app.js"></script>
   </body>
