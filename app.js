@@ -1,5 +1,5 @@
 const cloudinaryUrl = "cloudinary://488844431652422:qmA0d9axRJLrS2__qmA0d9axRJLrS2__3xiLnkw5amo@dvaczuwrm" ;
-// const uploadPreset = "	";
+// const uploadPreset = "my_unsigned_preset";
 const apiBaseUrl = "https://68d65479c2a1754b426a4e23.mockapi.io/students";
 const drawerMain = document.getElementById("drawerMain");
 const drawer = document.getElementById("drawer");
